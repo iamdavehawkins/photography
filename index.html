@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dave Hawkins Photography</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .profile {
+            margin: 5px auto;
+        }
+        
+        .profile img {
+            width: 134px;
+            height: 100px;
+            border-radius: 0;
+            filter: grayscale(100%);
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .gallery {
+            column-count: 3;
+            column-gap: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            break-inside: avoid;
+            margin-bottom: 15px;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-caption {
+            padding: 8px 0;
+            font-size: 0.8em;
+            color: #999;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .fullscreen-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow: auto;
+        }
+        
+        .fullscreen-image {
+            max-width: 90%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .image-info {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .image-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        .image-info .caption {
+            font-style: italic;
+            margin-top: 10px;
+            color: #fff;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #999999;
+            font-size: 0.9em;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .gallery {
+                column-count: 2;
+                column-gap: 10px;
+            }
+            
+            .gallery-item {
+                margin-bottom: 10px;
+            }
+            
+            .fullscreen-image {
+                max-width: 95%;
+            }
+            
+            .image-info {
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <img src="favicon.png" alt="Dave Hawkins Logo">
+            </div>
+            <h1>PHOTOGRAPHY</h1>
+            <p>by Dave Hawkins</p>
+        </header>
+
+        <div class="gallery" id="gallery">
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/alley.jpg" alt="">
+                <div class="image-caption">alley</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/beach girl.jpg" alt="">
+                <div class="image-caption">beach girl</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/beachtree.jpg" alt="">
+                <div class="image-caption">beachtree</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/crane.jpg" alt="">
+                <div class="image-caption">crane</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/garage.jpg" alt="">
+                <div class="image-caption">garage</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/lightstrands.jpg" alt="">
+                <div class="image-caption">lightstrands</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/noglass.jpg" alt="">
+                <div class="image-caption">noglass</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/rockbeach.jpg" alt="">
+                <div class="image-caption">rockbeach</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/slide.jpg" alt="">
+                <div class="image-caption">slide</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/sunflower.jpg" alt="">
+                <div class="image-caption">sunflower</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/supportlocalmusic.jpg" alt="">
+                <div class="image-caption">supportlocalmusic</div>
+            </div>
+            <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
+                <img src="images/swings.jpg" alt="">
+                <div class="image-caption">swings</div>
+            </div>
+        </div>
+
+        <div class="fullscreen-view" id="fullscreen-view">
+            <button class="back-button" id="back-button">←</button>
+            <img src="" alt="" class="fullscreen-image" id="fullscreen-image">
+            <div class="image-info" id="image-info">
+                <p class="title" id="image-title"></p>
+                <p>Film: <span id="image-film"></span></p>
+                <p>Camera: <span id="image-camera"></span></p>
+                <p>Location: <span id="image-location"></span></p>
+                <p class="caption" id="image-caption"></p>
+            </div>
+        </div>
+
+        <footer>
+            &copy; <script>document.write(new Date().getFullYear());</script> Dave Hawkins | <a href="https://links.iamdavehawkins.com" style="color: #999999; text-decoration: none;">links.iamdavehawkins.com</a>
+        </footer>
+    </div>
+
+    <script src="gallery.js"></script>
+</body>
+</html>
