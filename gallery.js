@@ -10,24 +10,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const imageLocation = document.getElementById('image-location');
     const imageCaption = document.getElementById('image-caption');
     
-    // Get all gallery items and add click events
+    // Intersection Observer for lazy loading
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                const placeholder = img.previousElementSibling;
+                
+                // Load the image
+                img.src = img.dataset.src;
+                
+                // Handle image load
+                img.onload = function() {
+                    img.classList.add('loaded');
+                    if (placeholder && placeholder.classList.contains('loading-placeholder')) {
+                        placeholder.style.display = 'none';
+                    }
+                };
+                
+                // Handle image error
+                img.onerror = function() {
+                    if (placeholder && placeholder.classList.contains('loading-placeholder')) {
+                        placeholder.textContent = 'Failed to load';
+                        placeholder.style.background = '#333';
+                    }
+                };
+                
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+    });
+    
+    // Get all gallery items and set up lazy loading
     const galleryItems = document.querySelectorAll('.gallery-item');
     
     galleryItems.forEach(item => {
         const img = item.querySelector('img');
         
+        // Start observing the image for lazy loading
+        imageObserver.observe(img);
+        
         // Add click event to open fullscreen view
         item.addEventListener('click', function() {
-            const imageData = {
-                src: img.src,
-                title: item.dataset.title,
-                film: item.dataset.film,
-                camera: item.dataset.camera,
-                location: item.dataset.location,
-                caption: item.dataset.caption
-            };
-            openFullscreen(imageData);
+            // Only open if image is loaded
+            if (img.classList.contains('loaded')) {
+                const imageData = {
+                    src: img.src,
+                    title: item.dataset.title,
+                    film: item.dataset.film,
+                    camera: item.dataset.camera,
+                    location: item.dataset.location,
+                    caption: item.dataset.caption
+                };
+                openFullscreen(imageData);
+            }
         });
+    });
+    
+    // Preload first few images immediately for better initial experience
+    const firstImages = Array.from(galleryItems).slice(0, 3);
+    firstImages.forEach(item => {
+        const img = item.querySelector('img');
+        if (img.dataset.src) {
+            img.src = img.dataset.src;
+        }
     });
     
     // Function to open fullscreen view

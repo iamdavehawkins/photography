@@ -62,8 +62,31 @@
         .gallery-item img {
             width: 100%;
             height: auto;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
             display: block;
+            opacity: 0;
+        }
+        
+        .gallery-item img.loaded {
+            opacity: 1;
+        }
+        
+        .gallery-item .loading-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.8em;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         
         .gallery-item:hover img {
@@ -189,51 +212,63 @@
 
         <div class="gallery" id="gallery">
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/alley.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/alley.jpg" alt="" loading="lazy">
                 <div class="image-caption">alley</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/beach girl.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/beach girl.jpg" alt="" loading="lazy">
                 <div class="image-caption">beach girl</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/beachtree.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/beachtree.jpg" alt="" loading="lazy">
                 <div class="image-caption">beachtree</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/crane.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/crane.jpg" alt="" loading="lazy">
                 <div class="image-caption">crane</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/garage.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/garage.jpg" alt="" loading="lazy">
                 <div class="image-caption">garage</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/lightstrands.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/lightstrands.jpg" alt="" loading="lazy">
                 <div class="image-caption">lightstrands</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/noglass.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/noglass.jpg" alt="" loading="lazy">
                 <div class="image-caption">noglass</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/rockbeach.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/rockbeach.jpg" alt="" loading="lazy">
                 <div class="image-caption">rockbeach</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/slide.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/slide.jpg" alt="" loading="lazy">
                 <div class="image-caption">slide</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/sunflower.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/sunflower.jpg" alt="" loading="lazy">
                 <div class="image-caption">sunflower</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/supportlocalmusic.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/supportlocalmusic.jpg" alt="" loading="lazy">
                 <div class="image-caption">supportlocalmusic</div>
             </div>
             <div class="gallery-item" data-title="" data-film="Kodak Gold 200" data-camera="Ricoh AF-5" data-location="" data-caption="">
-                <img src="images/swings.jpg" alt="">
+                <div class="loading-placeholder">Loading...</div>
+                <img data-src="images/swings.jpg" alt="" loading="lazy">
                 <div class="image-caption">swings</div>
             </div>
         </div>
