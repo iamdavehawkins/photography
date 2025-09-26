@@ -24,10 +24,56 @@
     
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
+        /* Custom Font Declarations */
+        @font-face {
+            font-family: 'Degular Text';
+            src: url('../fonts/DegularText-Regular.woff2') format('woff2'),
+                 url('https://cdn.iamdavehawkins.com/DegularText-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Obviously Compressed';
+            src: url('../fonts/Obviously-CompressedMedium.woff2') format('woff2'),
+                 url('https://cdn.iamdavehawkins.com/Obviously-CompressedMedium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Compadre Extended';
+            src: url('../fonts/Compadre-Extended.woff2') format('woff2'),
+                 url('https://cdn.iamdavehawkins.com/Compadre-Extended.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Vulf Mono';
+            src: url('../fonts/Vulf_Mono-Light_Italic_web.woff2') format('woff2'),
+                 url('https://cdn.iamdavehawkins.com/Vulf_Mono-Light_Italic_web.woff2') format('woff2');
+            font-weight: 300;
+            font-style: italic;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Coniferous';
+            src: url('../fonts/Coniferous-Regular.woff2') format('woff2'),
+                 url('https://cdn.iamdavehawkins.com/Coniferous-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         body {
-            font-family: 'Courier New', monospace;
-            background-color: #000000;
-            color: #ffffff;
+            font-family: 'Degular Text', Georgia, serif;
+            background-color: #222222;
+            color: #F4F0E6;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -36,7 +82,7 @@
         header {
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #4F6A89;
         }
         
         .profile {
@@ -51,20 +97,31 @@
         }
         
         h1 {
-            font-size: 2em;
+            font-family: 'Compadre Extended', Georgia, serif;
+            font-size: 1.8em;
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            color: #F4F0E6;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        header p {
+            font-family: 'Degular Text', Georgia, serif;
+            color: #4F6A89;
+            font-size: 1.1em;
+            margin: 0;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
         
         .gallery {
-            column-count: 3;
-            column-gap: 15px;
+            column-count: 1;
+            column-gap: 10px;
         }
         
         .gallery-item {
@@ -83,6 +140,8 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
             display: block;
             opacity: 0;
+            border: 5px solid #F4F0E6;
+            box-sizing: border-box;
         }
         
         .gallery-item img.loaded {
@@ -114,9 +173,11 @@
         .image-caption {
             padding: 8px 0;
             font-size: 0.8em;
-            color: #999;
+            color: #D8A34A;
             text-align: center;
-            font-family: 'Courier New', monospace;
+            font-family: 'Vulf Mono', 'Courier New', monospace;
+            font-weight: 300;
+            font-style: italic;
         }
         
         .fullscreen-view {
@@ -135,14 +196,16 @@
         }
         
         .fullscreen-image {
-            max-width: 95vw;
-            max-height: 90vh;
-            min-width: 60vw;
-            min-height: 60vh;
+            max-width: 90vw;
+            max-height: 85vh;
+            min-width: 80vw;
+            min-height: 50vh;
             width: auto;
             height: auto;
             margin-bottom: 20px;
             object-fit: contain;
+            border: 5px solid #F4F0E6;
+            box-sizing: border-box;
         }
         
         .image-info {
@@ -156,13 +219,15 @@
         .image-info p {
             margin: 5px 0;
             font-size: 0.9em;
-            color: #ccc;
+            color: #4F6A89;
+            font-family: 'Degular Text', Georgia, serif;
         }
         
         .image-info .caption {
+            font-family: 'Coniferous', Georgia, serif;
             font-style: italic;
             margin-top: 10px;
-            color: #fff;
+            color: #F4F0E6;
         }
         
         .back-button {
@@ -180,38 +245,76 @@
         footer {
             margin-top: 50px;
             text-align: center;
-            color: #999999;
+            color: #4F6A89;
             font-size: 0.9em;
             padding: 20px 0;
-            border-top: 1px solid #333;
+            border-top: 1px solid #4F6A89;
+            font-family: 'Vulf Mono', 'Courier New', monospace;
+            font-weight: 300;
+            font-style: italic;
         }
         
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .gallery {
-                column-count: 2;
-                column-gap: 10px;
+        footer a {
+            color: #D8A34A;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #9B4A34;
+        }
+        
+        /* Mobile-first responsive design */
+        @media (min-width: 481px) {
+            .container {
+                padding: 15px;
             }
             
-            .gallery-item {
-                margin-bottom: 10px;
+            .gallery {
+                column-count: 2;
+                column-gap: 15px;
+            }
+            
+            .gallery-item img {
+                border: 8px solid #F4F0E6;
             }
             
             .fullscreen-image {
-                max-width: 95vw;
-                max-height: 85vh;
-                min-width: 80vw;
-                min-height: 50vh;
+                border: 8px solid #F4F0E6;
+                max-width: 92vw;
+                max-height: 87vh;
             }
             
-            .image-info {
-                padding: 10px;
+            h1 {
+                font-size: 2.8em;
+                letter-spacing: 1.5px;
             }
         }
         
-        @media (max-width: 480px) {
+        @media (min-width: 769px) {
+            .container {
+                padding: 20px;
+            }
+            
             .gallery {
-                column-count: 1;
+                column-count: 3;
+                column-gap: 15px;
+            }
+            
+            .gallery-item img {
+                border: 10px solid #F4F0E6;
+            }
+            
+            .fullscreen-image {
+                border: 10px solid #F4F0E6;
+                max-width: 95vw;
+                max-height: 90vh;
+                min-width: 60vw;
+                min-height: 60vh;
+            }
+            
+            h1 {
+                font-size: 3em;
+                letter-spacing: 2px;
             }
         }
     </style>
@@ -304,7 +407,7 @@
         </div>
 
         <footer>
-            &copy; <script>document.write(new Date().getFullYear());</script> Dave Hawkins | <a href="https://links.iamdavehawkins.com" style="color: #999999; text-decoration: none;">links.iamdavehawkins.com</a>
+            &copy; <script>document.write(new Date().getFullYear());</script> Dave Hawkins | <a href="https://links.iamdavehawkins.com">links.iamdavehawkins.com</a>
         </footer>
     </div>
 
